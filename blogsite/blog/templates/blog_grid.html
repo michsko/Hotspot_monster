@@ -3,24 +3,27 @@
 
     <main class="blog-grid-page">
         <div class="container">
-            <h1 class="oleez-page-title wow fadeInUp">Blog Grid</h1>
+            <h1 class="oleez-page-title wow fadeInUp">Všechny příspěvky</h1>
             <div class="row">
+                {% for blog_post in blog_posts %}
                 <div class="col-md-4">
                     <div class="blog-post-card wow fadeInUp">
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="static/images/Bloggrid/Bloggrid_2@2x.jpg" alt="blog">
                         </div>
-                        <p class="blog-post-date">January 29, 2020</p>
-                        <h5 class="blog-post-title">Why you must experience design at least once</h5>
+                        <p class="blog-post-date">{{blog_post.date_published}}</p>
+                        <h5 class="blog-post-title">{{blog_post.title}}</h5>
+                         <p class="blog-post-date">Autor: {{blog_post.author}}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                {% endfor %}
+                <!-- <div class="col-md-4">
                     <div class="blog-post-card wow fadeInUp">
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="static/images/Bloggrid/Bloggrid_8@2x.jpg" alt="blog">
                         </div>
-                        <p class="blog-post-date">January 29, 2020</p>
-                        <h5 class="blog-post-title">Why you must experience design at least once</h5>
+                        <p class="blog-post-date">{{blog.date_published}}</p>
+                        <h5 class="blog-post-title">{{blog.title}}</h5>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -31,17 +34,20 @@
                         <p class="blog-post-date">January 29, 2020</p>
                         <h5 class="blog-post-title">Why you must experience design at least once</h5>
                     </div>
-                </div>
+                </div> -->
+               <!--  {% for blog in second_three %}
                 <div class="col-md-4">
                     <div class="blog-post-card wow fadeInUp">
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="static/images/Bloggrid/Bloggrid_6@2x.jpg" alt="blog">
                         </div>
-                        <p class="blog-post-date">January 29, 2020</p>
-                        <h5 class="blog-post-title">Why you must experience design at least once</h5>
+                       <p class="blog-post-date">{{blog.date_published}}</p>
+                        <h5 class="blog-post-title">{{blog.title}}</h5>
+                         <p class="blog-post-date">Autor: {{blog.author}}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                {% endfor %} -->
+                <!-- <div class="col-md-4">
                     <div class="blog-post-card wow fadeInUp">
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="static/images/Bloggrid/Bloggrid_5@2x.jpg" alt="blog">
@@ -59,16 +65,20 @@
                         <h5 class="blog-post-title">Why you must experience design at least once</h5>
                     </div>
                 </div>
+                 -->
+               <!--   {% for item in third_three %}
                 <div class="col-md-4">
                     <div class="blog-post-card wow fadeInUp">
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="static/images/Bloggrid/Bloggrid_3@2x.jpg" alt="blog">
                         </div>
-                        <p class="blog-post-date">January 29, 2020</p>
-                        <h5 class="blog-post-title">Why you must experience design at least once</h5>
+                        <p class="blog-post-date">{{blog.date_published}}</p>
+                        <h5 class="blog-post-title">{{blog.title}}</h5>
+                         <p class="blog-post-date">Autor: {{blog.author}}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                {% endfor %} -->
+                <!-- <div class="col-md-4">
                     <div class="blog-post-card wow fadeInUp">
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="static/images/Bloggrid/Bloggrid_2@2x.jpg" alt="blog">
@@ -85,15 +95,27 @@
                         <p class="blog-post-date">January 29, 2020</p>
                         <h5 class="blog-post-title">Why you must experience design at least once</h5>
                     </div>
-                </div>
+                </div> -->
             </div>
+            
+
             <div class="row">
                 <div class="col-12 pb-5 mb-5">
                         <nav class="oleez-pagination d-flex align-items-center justify-content-center wow fadeInUp">
-                            <a href="#!" class="active">01</a>
-                            <a href="#!">02</a>
-                            <a href="#!">03</a>
-                            <a href="#!" class="next">&rarr;</a>
+                            
+                            {% if blog_posts.has_previous %}
+                           
+                            <a href="?page={{blog_posts.previous_page_number}}">&larr;</a>
+                            {% endif %}
+
+                            <a href="?page={{blog_posts.number }}" class='active'>{{ blog_posts.number }}</a>
+
+                            {% if blog_posts.has_next %}
+                            <a href="?page={{ blog_posts.next_page_number}}">{{blog_posts.next_page_number}}</a>
+                        
+                            <a href="?page={{ blog_posts.next_page_number}}">&rarr;</a>
+                           {% endif %}
+                      
                         </nav>
                 </div>
             </div>

@@ -11,7 +11,7 @@
                             <div class="carousel-caption">
                                 <h2 data-animation="animated fadeInRight"><span>Buď v obraze</span></h2>
                                 <h2 data-animation="animated fadeInRight"><span>Název článku</span></h2>
-                                <h5>autor</h5>
+                              
                                 <a href="#!" class="carousel-item-link" data-animation="animated fadeInRight">ČÍST ČLÁNEK</a>
                             </div>
                         </div>
@@ -45,97 +45,29 @@
         </section>
         <section class="oleez-landing-section oleez-landing-section-about wow">
         </section>
-         <section class="oleez-landing-section oleez-landing-section-about">
-            <div class="container">
-                <div class="oleez-landing-section-content">
-                    <div class="oleez-landing-section-verticals wow fadeIn">
-                        <span class="number">01</span> <img src="static/images/Logo_2.png" alt="ollez" height="12px">
-                    </div>
-                    <div class="row landing-about-content wow fadeInUp">
-                        <div class="col-md-6">
-                            <h2>We help and solve your business problem.</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corporis delectus dolorem possimus, dolor rerum.</p>
-                        </div>
-                    </div> 
-                    <button type="button" class="btn btn-outline-warning">číst více</button>    
-                </div>
-            </div>
-        <section class="oleez-landing-section oleez-landing-section-about">
-            <div class="container">
-                <div class="oleez-landing-section-content">
-                    <div class="oleez-landing-section-verticals wow fadeIn">
-                        <span class="number">02</span> <img src="static/images/Logo_2.png" alt="ollez" height="12px">
-                    </div>
-                    <div class="row landing-about-content wow fadeInUp">
-                        <div class="col-md-6">
-                            <h2>We help and solve your business problem.</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corporis delectus dolorem possimus, dolor rerum.</p>
-                        </div>
-                    </div> 
-                    <button type="button" class="btn btn-outline-warning">číst více</button>    
-                </div>
-            </div>
-        <section class="oleez-landing-section oleez-landing-section-about">
-            <div class="container">
-                <div class="oleez-landing-section-content">
-                    <div class="oleez-landing-section-verticals wow fadeIn">
-                        <span class="number">03</span> <img src="static/images/Logo_2.png" alt="ollez" height="12px">
-                    </div>
-                    <div class="row landing-about-content wow fadeInUp">
-                        <div class="col-md-6">
-                            <h2>We help and solve your business problem.</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corporis delectus dolorem possimus, dolor rerum.</p>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-warning">číst více</button>
-                </div>
-            </div>
-         <section class="oleez-landing-section oleez-landing-section-about">
-            <div class="container">
-                <div class="oleez-landing-section-content">
-                    <div class="oleez-landing-section-verticals wow fadeIn">
-                        <span class="number">04</span> <img src="static/images/Logo_2.png" alt="ollez" height="12px">
-                    </div>
-                    <div class="row landing-about-content wow fadeInUp">
-                        <div class="col-md-6">
-                            <h2>We help and solve your business problem.</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corporis delectus dolorem possimus, dolor rerum.</p>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-warning">číst více</button>
-                </div>
-            </div>
 
-        <section class="oleez-landing-section oleez-landing-section-about">
+        {% for blog_post in last_five %}
+
+         <section class="oleez-landing-section oleez-landing-section-about">
             <div class="container">
-                <div class="oleez-landing-section-content" href="{% url 'blog_grid' %}">
+                <div class="oleez-landing-section-content">
                     <div class="oleez-landing-section-verticals wow fadeIn">
-                        <span class="number">05</span> <img src="static/images/Logo_2.png" alt="ollez" height="12px">
+                        <span class="number">{{ blog_post.id }}</span> <img src="static/images/Logo_2.png" alt="ollez" height="12px">
                     </div>
                     <div class="row landing-about-content wow fadeInUp">
                         <div class="col-md-6">
-                            <h2>We help and solve your business problem.</h2>
+                            <h2>{{ blog_post.title }}</h2>
                         </div>
                         <div class="col-md-6">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corporis delectus dolorem possimus, dolor rerum.</p>
+                            <p>{{ blog_post.subtitle }}</p>
                         </div>
-                    </div>
-                  <button type="button" class="btn btn-outline-warning">číst více</button>
+                    </div> 
+                    <button type="button" class="btn btn-outline-warning">číst více</button>    
                 </div>
             </div>
+       {% endfor %}
         </section>
-    </section>
-</section>
-</section>
-</section>
+
 
  
                  

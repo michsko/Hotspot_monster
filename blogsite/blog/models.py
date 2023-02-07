@@ -5,9 +5,9 @@ from django.contrib import admin
 # Create your models here.
 
 
-class BlogPostAdmin(model.Model): 
+class BlogPostAdmin(models.Model): 
 	search_fields = ['Title', 'Subtitle', 'Content', 'Date', 'Autor', "Category1", "Category2", "Category3",
-	"Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8", "Tag9", "Tag10" ]
+	"Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8", "Tag9", "Tag10", 'read_count']
 
 class BlogPost(models.Model):
 	title = models.CharField('Title', max_length=255)
@@ -28,3 +28,8 @@ class BlogPost(models.Model):
 	tag8 = models.CharField("Tag8", max_length=255, blank=True)
 	tag9 = models.CharField("Tag9", max_length=255, blank=True)
 	tag10 = models.CharField("Tag10", max_length=255, blank=True)
+	read_count = models.IntegerField('Read Count', default=0)
+	picture_name = models.CharField('Picture_name', max_length=255, blank=True)
+
+	def __str__(self):
+		return self.title

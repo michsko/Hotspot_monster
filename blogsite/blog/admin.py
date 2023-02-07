@@ -3,4 +3,5 @@ from .models import BlogPost, BlogPostAdmin
 # Register your models here.
 
 
-admin.site.register(BlogPost, BlogPostAdmin)
+admin.site.register(BlogPost)
+admin.site.register(BlogPostAdmin)
