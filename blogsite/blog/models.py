@@ -11,7 +11,7 @@ class BlogPostAdmin(models.Model):
 
 class BlogPost(models.Model):
 	title = models.CharField('Title', max_length=255)
-	subtitle = models.CharField('Subtitle', max_length=255)
+	subtitle = models.CharField('Subtitle', max_length=255, blank=True)
 	content = models.TextField('Content1', blank=False)
 	content2 = models.TextField('Content2', blank=True)
 	date_published = models.DateTimeField('Date', default=now, editable=True)
