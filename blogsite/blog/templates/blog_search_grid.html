@@ -1,11 +1,12 @@
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 
+{% if searched %}
     <main class="blog-grid-page">
         <div class="container">
-            <h1 class="oleez-page-title wow fadeInUp">Všechny příspěvky</h1>
+            <h1 class="oleez-page-title wow fadeInUp">Hledané výrazy: {{ searched }}</h1>
             <div class="row">
-                {% for blog_post in blog_posts %}
+                {% for blog_post in searched_blogs %}
                 <div class="col-md-4">
                     <div class="blog-post-card wow fadeInUp">
                         <div class="blog-post-thumbnail-wrapper">
@@ -23,15 +24,46 @@
                 <div class="col-12 pb-5 mb-5">
                         <nav class="oleez-pagination d-flex align-items-center justify-content-center wow fadeInUp">
                             
+                        
+
+                            <a href="?page={{blog_posts.number }}" class='active'>{{ blog_posts.number }}</a>
+
+                            
+                        </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% else %}
+ <main class="blog-grid-page">
+        <div class="container">
+            <h1 class="oleez-page-title wow fadeInUp">Hledané výrazy: {{ searched }}</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="blog-post-card wow fadeInUp">
+                        <div class="blog-post-thumbnail-wrapper">
+                            <img src="static/images/blog_images/{{blog_post.picture_name}}" alt="blog">
+                        </div>
+                        <p class="blog-post-date"></p>
+                        <h5 class="blog-post-title">Hledaný výraz nebyl nalezen.</h5>
+                        <p class="blog-post-date"></p>    
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pb-5 mb-5">
+                        <nav class="oleez-pagination d-flex align-items-center justify-content-center wow fadeInUp">
+                            
                             {% if blog_posts.has_previous %}
                            
                             <a href="?page={{blog_posts.previous_page_number}}">&larr;</a>
                             {% endif %}
 
-                            <a href="?page={{blog_posts.number }}" class='active'>{{ blog_posts.number }}</a>
+                            <a href="?page={{blog_posts.number }}" class='active'>0</a>
 
                             {% if blog_posts.has_next %}
-                            <a href="?page={{ blog_posts.next_page_number}}">{{blog_posts.next_page_number}}</a>
+                            <a href="?page={{ blog_posts.next_page_number}}">{{blog_post.id}}</a>
                         
                             <a href="?page={{ blog_posts.next_page_number}}">&rarr;</a>
                            {% endif %}
@@ -42,4 +74,5 @@
         </div>
     </main>
 
+{% endif %}
 {% include 'footer.html' %}

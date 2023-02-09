@@ -24,12 +24,25 @@ def blog_grid (request):
 
 
 
-def blog_single (request):
-	return render(request, 'blog_single.html', {})
+def blog_single (request, blog_post_id):
+
+	paginator = Paginator(BlogPost.objects.all().filter(pk=blog_post_id), 1)
+	page = request.GET.get('page')
+	blog_posts = paginator.get_page(page)
+	
+	return render(request, 'blog_single.html', {
+		'blog_posts': blog_posts,
+		})
 
 
 def blog_standard (request):
-	return render(request, 'blog_standard.html', {})
+	paginator = Paginator(BlogPost.objects.all().order_by('date_published'), 3)
+	page = request.GET.get('page')
+	blog_posts = paginator.get_page(page)
+	
+	return render(request, 'blog_standard.html', {
+		'blog_posts': blog_posts,
+		})
 
 
 def contact (request):
@@ -41,21 +54,23 @@ def fournullfour (request):
 
 
 def index (request):
+	last_post = BlogPost.objects.all().order_by('-date_published')[:1]
 	last_five = BlogPost.objects.all().order_by('date_published')[:5]
 
 	return render(request, 'index.html', {
-		'last_five': last_five
+		'last_five': last_five,
+		'last_post': last_post,
 		})
-
 
 def search(request):
 	if request.method == 'POST':
 		searched = request.POST['searched']
 
-		search = BlogPost.objects.annotate(search=SearchVector(
-			'title','subtitle', 'content', 'date_published','author',
-			'catergory1', 'catergory2', 'catergory3', 'tag1', 'tag2',
-			'tag3', 'tag4', 'tag5', 'tag6', 'tag7', 'tag8', 
-			'tag9')).filter(search='searched')
-
-	return render(request ,'blog_grid.html', {"search" : search, })
+		searched_blogs = BlogPost.objects.filter(title__icontains=searched)
+	
+		return render(request ,'blog_search_grid.html', {
+			"searched_blogs" : searched_blogs,
+			"searched": searched, 
+			})
+	else: 
+		return render(request, 'blog_search_grid.html',{})

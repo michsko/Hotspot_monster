@@ -1,110 +1,83 @@
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 
-    <main class="blog-post-single">
+
+    <main class="blog-standard">
         <div class="container">
-            <h1 class="post-title wow fadeInUp">Blog Standard</h1>
+            <h1 class="oleez-page-title wow fadeInUp">Příspěvek</h1>
             <div class="row">
-                <div class="col-md-8 blog-post-wrapper">
-                    <div class="post-header wow fadeInUp">
-                        <img src="static/images/Blog_single/Blog_single@2x.jpg" alt="blog post" class="post-featured-image">
-                        <p class="post-date">January 29, 2020</p>
-                    </div>
-                    <div class="post-content wow fadeInUp">
-                        <h4>Why you must experience design at least once</h4>
-                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
-                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
+                <div class="col-md-8">
+                    {% for blog_post in blog_posts %}
+                    <article class="blog-post wow fadeInUp">
+                        <img src="/static/images/blog_images/{{blog_post.picture_name}}" alt="blog post" class="post-thumbnail">
+                        <p class="post-date">{{blog_post.date_published}}</p>
+                        <h4>{{blog_post.title}}</h4>
+                        <p><strong>{{blog_post.subtitle}}</strong></p>
+                        <p>{{blog_post.content}}</p>
                         <blockquote class="blockquote wow fadeInUp">
-                            <p>It’s safe to say that because of my unique professional experiences, I’ve tested out a lot of headphones.</p>
+                            <p><strong>{{blog_post.quotes}}</strong></p>
                         </blockquote>
-                        <h5>The High-Quality Architecture Solutions from a Silicon Valley.</h4>
-                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
-                        <h5>Outdoor Work: a Designer’s Checklist for Every UX Project.</h4>
-                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
-                    </div>
+                        <p>{{blog_post.content2}}</p>
+                        <br/>
+                        <p class="post-date">Autor:{{blog_post.author}}</p>
+                    </article>
+                    {% endfor %}
                    
-                    <div class="post-navigation wow fadeInUp">
-                        <button class="btn prev-post"> Prev Post</button>
-                        <button class="btn next-post"> Next Post</button>
-                    </div>
+                    <nav class="oleez-pagination d-flex align-items-center justify-content-center wow fadeInUp">
+
+                        {% if blog_posts.has_previous %}
+                        <a href="?page={{blog_posts.previous_page_number}}">&larr;</a>
+                        {% endif %}
+                         <a href="?page={{blog_posts.number }}" class='active'>{{ blog_posts.number }}</a>
+                        {% if blog_posts.has_next %}
+                        <a href="?page={{ blog_posts.next_page_number}}">&rarr;</a>
+                        {% endif %}
+                    </nav>
                 </div>
-                <div class="col-md-4">
-                    <div class="sidebar-widget wow fadeInUp">
-                        <h5 class="widget-title">Tags</h5>
-                        <div class="widget-content">
-                            <a href="#!" class="post-tag">Design Studio</a>
-                            <a href="#!" class="post-tag">Creative Design</a>
-                            <a href="#!" class="post-tag">Marketing</a>
-                            <a href="#!" class="post-tag">Typography</a>
-                            <a href="#!" class="post-tag">Team</a>
-                            <a href="#!" class="post-tag">Project</a>
-                        </div>
-                    </div>
-                    <div class="sidebar-widget wow fadeInUp">
-                        <h5 class="widget-title">Share</h5>
-                        <div class="widget-content">
-                            <nav class="social-links">
-                                <a href="#!">Fb</a>
-                                <a href="#!">Tw</a>
-                                <a href="#!">In</a>
-                                <a href="#!">Be</a>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="sidebar-widget wow fadeInUp">
-                        <h5 class="widget-title">Gallery</h5>
-                        <div class="widget-content">
-                            <div class="gallery">
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
-                                <a href="static/images/Blogstandard/Blogstandard_@2x.jpg" class="gallery-grid-item" data-fancybox="widget-gallery">
-                                    <img src="static/images/Blogstandard/Blogstandard_@2x.jpg" alt="gallery item">
-                                </a>
+                
+                 <div class="col-md-4">
+                        <div class="sidebar-widget wow fadeInUp">
+                            <h5 class="widget-title">Tagy</h5>
+                            <div class="widget-content">
+                                {% for blog_post in blog_posts %}
+                                <a href="#!" class="post-tag">{{blog_post.tag1 }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag2|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag3|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag4|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag5|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag6|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag7|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag8|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag9|default_if_none:"1" }}</a>
+                                <a href="#!" class="post-tag">{{blog_post.tag10|default_if_none:"1" }}</a>
+                                {% endfor %}
                             </div>
                         </div>
-                    </div>
-                    <div class="sidebar-widget wow fadeInUp">
-                        <h5 class="widget-title">Categories</h5>
-                        <div class="widget-content">
-                            <ul class="category-list">
-                                <li><a href="#!">Animation</a></li>
-                                <li><a href="#!">Branding</a></li>
-                                <li><a href="#!">Graphic Design</a></li>
-                                <li><a href="#!">Photography</a></li>
-                                <li><a href="#!">Web Developing</a></li>
-                            </ul>
+                        <div class="sidebar-widget wow fadeInUp">
+                            <h5 class="widget-title">Galerie</h5>
+                            <div class="widget-content">
+                                <div class="gallery">
+                                    {% for blog_post in blog_posts %}
+                                    <a href="/static/images/blog_images/{{blog_post.picture_name}}" class="gallery-grid-item" data-fancybox="widget-gallery">
+                                        <img src="/static/images/blog_images/{{blog_post.picture_name}}" alt="gallery item">
+                                    {% endfor %}
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+                    <div class="sidebar-widget wow fadeInUp">
+                            <h5 class="widget-title">Kategorie</h5>
+                            <div class="widget-content">
+                                {% for blog_post in blog_posts %}
+                                <ul class="category-list">
+                                    <li><a href="#!">{{blog_post.category1}}</a></li>
+
+                                    <li><a href="#!">{{blog_post.category2}}</a></li>
+
+                                    <li><a href="#!">{{blog_post.category3}}</a></li>
+                                </ul>
+                            {% endfor %}    
+                            </div>
                     </div>
                 </div>
             </div>
